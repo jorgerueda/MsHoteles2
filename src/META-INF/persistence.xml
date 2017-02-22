@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="MsHoteles3" transaction-type="RESOURCE_LOCAL">
+		<class>segundaEntrega.Negocio.Departamento.Departamento</class>
+		<class>segundaEntrega.Negocio.Empleado.Empleado</class>	
+		<class>segundaEntrega.Negocio.Empleado.EmpleadoTiempoParcial</class>
+	    <class>segundaEntrega.Negocio.Empleado.EmpleadoTiempoCompleto</class>
+	    <class>segundaEntrega.Negocio.Empleado.EmpleadoTarea</class>
+	    <class>segundaEntrega.Negocio.Tarea.Tarea</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/mshoteles"  /> <!-- ;create=true -->
+			<property name="javax.persistence.jdbc.user" value="root" />
+			<property name="javax.persistence.jdbc.password" value="" />
+
+			<!-- EclipseLink should create the database schema automatically -->
+			<property name="eclipselink.ddl-generation" value="create-tables"/>
+   			<property name="eclipselink.create-ddl-jdbc-file-name" value="createDDL_ddlGeneration.jdbc"/>
+   			<property name="eclipselink.drop-ddl-jdbc-file-name" value="dropDDL_ddlGeneration.jdbc"/>
+   			<property name="eclipselink.ddl-generation.output-mode" value="both"/>
+   			<property name="javax.persistence.jdbc.logging.level" value="INFO"/>
+
+		</properties>
+	</persistence-unit>
+</persistence> 

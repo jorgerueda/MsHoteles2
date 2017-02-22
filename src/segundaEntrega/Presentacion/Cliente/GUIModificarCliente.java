@@ -1,0 +1,274 @@
+package segundaEntrega.Presentacion.Cliente;
+
+import javax.swing.JOptionPane;
+
+import segundaEntrega.Negocio.Transfer.TransferCliente;
+import segundaEntrega.Negocio.Transfer.TransferClienteStandar;
+import segundaEntrega.Negocio.Transfer.TransferClienteVip;
+import segundaEntrega.Presentacion.Vista;
+import segundaEntrega.Presentacion.Controlador.Evento;
+import segundaEntrega.Presentacion.Controlador.Implementacion.ControladorImp;
+import segundaEntrega.Presentacion.Dispatcher.EventoVista;
+
+public class GUIModificarCliente extends javax.swing.JFrame implements Vista {
+
+ 
+	static private GUIModificarCliente modificarCliente;
+
+	  private GUIModificarCliente() {
+	      initComponents();
+	  }
+	  
+	 
+	  static public GUIModificarCliente obtenerInstancia(){
+		   if(modificarCliente == null){
+			   modificarCliente = new GUIModificarCliente();
+		   }
+		   
+		   return modificarCliente;
+	  }
+                       
+    private void initComponents() {
+
+        jLabelNombre = new javax.swing.JLabel();
+        jLabelApellidos = new javax.swing.JLabel();
+        jRadioButtonTipo = new javax.swing.JRadioButton();
+        jLabelDNI = new javax.swing.JLabel();
+        jLabelDescuento = new javax.swing.JLabel();
+        jLabelPuntos = new javax.swing.JLabel();
+        jFormattedTextFieldNombre = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldApellidos = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDNI = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldPuntos = new javax.swing.JFormattedTextField();
+        jFormattedTextFieldDescuento = new javax.swing.JFormattedTextField();
+        jButtonAceptar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabelNombre.setText("Nombre");
+
+        jLabelApellidos.setText("Apellidos");
+
+        jRadioButtonTipo.setText("VIP");
+        jRadioButtonTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jRadioButtonTipoActionPerformed(evt);
+            }
+        });
+
+        jFormattedTextFieldDescuento.setEnabled(false);
+        jLabelDNI.setText("DNI");
+
+        jLabelDescuento.setText("Descuento");
+
+        jLabelPuntos.setText("Puntos");
+
+        
+        jButtonAceptar.setText("Aceptar");
+        jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+            	jButtonAceptarActionPerformed(evt);
+            }
+        });
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setVisible(false);
+      
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addComponent(jRadioButtonTipo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelDescuento)
+                                .addGap(18, 18, 18)
+                                .addComponent(jFormattedTextFieldDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelPuntos))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonAceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                .addComponent(jButtonCancelar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabelNombre)
+                                        .addGap(29, 29, 29)
+                                        .addComponent(jFormattedTextFieldNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelApellidos)
+                                            .addComponent(jLabelDNI))
+                                        .addGap(20, 20, 20)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jFormattedTextFieldDNI, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                                            .addComponent(jFormattedTextFieldApellidos))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(18, 18, 18)
+                .addComponent(jFormattedTextFieldPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jRadioButtonTipo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelNombre)
+                    .addComponent(jFormattedTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelApellidos)
+                    .addComponent(jFormattedTextFieldApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDNI)
+                    .addComponent(jFormattedTextFieldDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelDescuento)
+                    .addComponent(jLabelPuntos)
+                    .addComponent(jFormattedTextFieldPuntos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jFormattedTextFieldDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAceptar)
+                    .addComponent(jButtonCancelar))
+                .addGap(16, 16, 16))
+        );
+        //Borra el los datos correspondiente al cerrar la ventana
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+        		//Borra lo anterior
+                jFormattedTextFieldDNI.setText("");
+                jFormattedTextFieldDescuento.setText("");
+                jFormattedTextFieldNombre.setText("");
+                jFormattedTextFieldPuntos.setText("");
+                jFormattedTextFieldApellidos.setText("");
+        		
+            }
+        });
+        pack();
+    }// </editor-fold>                        
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        // TODO add your handling code here:
+    }    
+    private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {  
+    	 
+    	TransferCliente transferCliente;
+  	   
+  	   if(jRadioButtonTipo.isSelected()){
+  		   transferCliente = new TransferClienteVip();
+  		   
+  		  ((TransferClienteVip) transferCliente).setDescuento(Integer.valueOf(jFormattedTextFieldDescuento.getText()));
+  	   }
+  	   else{
+  		   transferCliente = new TransferClienteStandar();
+  		   
+  		   ((TransferClienteStandar) transferCliente).setPuntosAcumulados(Integer.valueOf(jFormattedTextFieldPuntos.getText()));
+  	   }
+  	   
+  	   transferCliente.setDni(jFormattedTextFieldDNI.getText());
+  	   transferCliente.setNombre(jFormattedTextFieldNombre.getText());
+  	   transferCliente.setApellidos(jFormattedTextFieldApellidos.getText());  
+  	   
+         ControladorImp.getInstancia().execute(Evento.MODIFICAR_CLIENTE, transferCliente);
+        // TODO add your handling code here:
+    }   
+    private void jRadioButtonTipoActionPerformed(java.awt.event.ActionEvent evt) {                                                
+    	jFormattedTextFieldDescuento.setText("");
+        jFormattedTextFieldPuntos.setText(""); 
+    	if(jRadioButtonTipo.isSelected()){
+             jFormattedTextFieldDescuento.setEnabled(true);
+             jFormattedTextFieldPuntos.setEnabled(false);
+
+             
+         }
+         else{
+        	 jFormattedTextFieldDescuento.setEnabled(false);
+             jFormattedTextFieldPuntos.setEnabled(true);
+
+            }    
+    	 }   
+
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+ 
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(GUIModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(GUIModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(GUIModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(GUIModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new GUIModificarCliente().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton jButtonAceptar;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JFormattedTextField jFormattedTextFieldApellidos;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDNI;
+    private javax.swing.JFormattedTextField jFormattedTextFieldDescuento;
+    private javax.swing.JFormattedTextField jFormattedTextFieldNombre;
+    private javax.swing.JFormattedTextField jFormattedTextFieldPuntos;
+    private javax.swing.JLabel jLabelApellidos;
+    private javax.swing.JLabel jLabelDNI;
+    private javax.swing.JLabel jLabelDescuento;
+    private javax.swing.JLabel jLabelNombre;
+    private javax.swing.JLabel jLabelPuntos;
+    private javax.swing.JRadioButton jRadioButtonTipo;
+    // End of variables declaration                 
+    @Override
+	public void actualizar(int id_evento_vista, Object datos) {
+		//Borra lo anterior
+    	
+    	 jFormattedTextFieldDNI.setText("");
+         jFormattedTextFieldDescuento.setText("");
+         jFormattedTextFieldNombre.setText("");
+         jFormattedTextFieldPuntos.setText("");
+         jFormattedTextFieldApellidos.setText("");
+		
+		if(id_evento_vista == EventoVista.MODIFICAR_CLIENTE_EXITO){
+			JOptionPane.showMessageDialog(null, "Se ha modificado el Cliente con exito", "Modificar Cliente", JOptionPane.INFORMATION_MESSAGE);		
+		}	
+		else if(id_evento_vista == EventoVista.MODIFICAR_CLIENTE_NO_EXISTE){
+			JOptionPane.showMessageDialog(null, "ERROR!! El Cliente introducido no existe", "Modificar Cliente", JOptionPane.ERROR_MESSAGE);
+		}
+		else if (id_evento_vista == EventoVista.MODIFICAR_CLIENTE_FALLO){
+			JOptionPane.showMessageDialog(null, "ERROR!! Ha ocurrido un error con la BD", "Modificar Cliente", JOptionPane.ERROR_MESSAGE);
+		}
+		
+	}
+}
